@@ -1,0 +1,223 @@
+<html><head><base href="." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacDesign - Design & Criatividade</title>
+<style>
+:root {
+  --primary: #2196F3;
+  --dark: #1976D2;
+  --accent: #FF4081;
+  --text: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.floating-element {
+  position: absolute;
+  animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services {
+  padding: 5rem 2rem;
+  background: white;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  padding: 2rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #eee;
+  border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="logo">MacDesign</h1>
+    <p class="tagline">Transformando ideias em experiências visuais extraordinárias</p>
+    <button class="cta-button" onclick="scrollToContact()">Comece seu projeto</button>
+  </div>
+  
+  <div class="floating-elements">
+    <svg class="floating-element" style="top: 20%; left: 10%" width="50" height="50" viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20" fill="#2196F3" opacity="0.5"/>
+    </svg>
+    <svg class="floating-element" style="top: 60%; right: 15%" width="40" height="40" viewBox="0 0 40 40">
+      <rect width="30" height="30" x="5" y="5" fill="#FF4081" opacity="0.5"/>
+    </svg>
+    <svg class="floating-element" style="top: 30%; right: 30%" width="60" height="60" viewBox="0 0 60 60">
+      <polygon points="30,5 55,45 5,45" fill="#FFC107" opacity="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Design Gráfico</h3>
+      <p>Criação de identidade visual, logos e materiais impressos com excelência.</p>
+    </div>
+    <div class="service-card">
+      <h3>UI/UX Design</h3>
+      <p>Interfaces intuitivas e experiências de usuário memoráveis.</p>
+    </div>
+    <div class="service-card">
+      <h3>Web Design</h3>
+      <p>Sites responsivos e modernos que convertem visitantes em clientes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-form">
+    <h2>Entre em Contato</h2>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <input type="text" class="form-input" placeholder="Seu Nome" required>
+      <input type="email" class="form-input" placeholder="Seu Email" required>
+      <textarea class="form-input" placeholder="Sua Mensagem" rows="5" required></textarea>
+      <button type="submit" class="cta-button">Enviar Mensagem</button>
+    </form>
+  </div>
+</section>
+
+<script>
+function scrollToContact() {
+  document.getElementById('contact').scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  
+  // Simulação de envio do formulário
+  alert('Obrigado por entrar em contato! Retornaremos em breve.');
+  event.target.reset();
+}
+
+// Adiciona animação aos cards de serviço
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mouseover', () => {
+    card.style.transform = 'translateY(-10px)';
+  });
+  
+  card.addEventListener('mouseout', () => {
+    card.style.transform = 'translateY(0)';
+  });
+});
+
+// Animação dos elementos flutuantes
+const elements = document.querySelectorAll('.floating-element');
+elements.forEach((el, index) => {
+  el.style.animationDelay = `${index * 0.5}s`;
+});
+</script>
+
+</body></html>
